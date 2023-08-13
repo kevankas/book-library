@@ -7,32 +7,52 @@
     <link href="styles.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="header"><h1>Library</h1></div>
-    <div class="body">
-      <button>NEW BOOK</button>
-      <dialog open>
-      <p>Greetings, one and all!</p>
-      <form method="dialog">
-        <button>OK</button>
-      </form>
-        </dialog>
+    <div class="container">
+        <div class="header"><h1>Library</h1></div>
+        <div class="body">
+          <button id="newBook">New Book</button>
+        
+        </div>
+        <div class="bodytwo">
+        <dialog id="dialog">
+            <div class="dialog">
+                <h1>Add new book</h1>
+                <input placeholder="Title" required>
+                <input placeholder="Author" required>
+                <input type="number" placeholder="Pages" required>
+                <form method="dialog">
+                  <button type="submit" id="submit">Submit</button>
+                </form>
+            </div>
+              </dialog>
+        
+        </div>
+        
+        <div class="footer">  
+          hello world
+        </div>
     </div>
-
-<div class="footer">  
-  
-</div>
 
     <script>
         let myLibrary = [];
 
         function Book() {
         // the constructor...
+        // book.title
+        // book.author
+        // book.pages
+        // book.read
+
         }
 
         function addBookToLibrary() {
         // do stuff here
         }
 
+
+        const showInput = document.getElementById("newBook");
+        const showDialog = document.getElementById("dialog");
+        showInput.addEventListener("click", () => dialog.showModal());
 
     </script>
 </body>
