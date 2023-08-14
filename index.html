@@ -15,21 +15,24 @@
         </div>
         <div class="bodytwo">
         <dialog id="dialog">
-            <div class="dialog">
-                <h1>Add new book</h1>
-                <input placeholder="Title" required>
-                <input placeholder="Author" required>
-                <input type="number" placeholder="Pages" required>
-                <form method="dialog">
-                  <button type="submit" id="submit">Submit</button>
-                </form>
-            </div>
+                <div class="dialog">
+                    <h1 class="h1">Add new book</h1>
+                    <input placeholder="Title" required>
+                    <input placeholder="Author" required>
+                    <input type="number" placeholder="Pages" required>
+                    <div class="read">Have you read it?<input type="checkbox" id="check"></div>
+                    <form method="dialog">
+                      <button type="submit" id="submit">Submit</button>
+                    </form>
+                </div>
               </dialog>
         
         </div>
         
+        
         <div class="footer">  
           hello world
+      
         </div>
     </div>
 
@@ -51,9 +54,22 @@
 
 
         const showInput = document.getElementById("newBook");
-        const showDialog = document.getElementById("dialog");
+        // const showDialog = document.getElementById("dialog");
         showInput.addEventListener("click", () => dialog.showModal());
+        // const myDialog = document.getElementById('dialog');
+        // myDialog.addEventListener('click', () => myDialog.close());
+  
+        function onMouseDown(event) {
+        if (event.target === dialog) {
+            dialog.close();
+        }
+        }
 
+        const dialog = document.querySelector("dialog");
+        dialog.addEventListener("mousedown", onMouseDown);
+
+
+   
     </script>
 </body>
 </html>
