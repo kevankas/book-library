@@ -15,13 +15,15 @@
         </div>
         <div class="bodytwo">
         <dialog id="dialog">
+            <form method="dialog" id="myForm">
                 <div class="dialog">
+                    
                     <h1 class="h1">Add new book</h1>
                     <input placeholder="Title" required>
                     <input placeholder="Author" required>
-                    <input type="number" placeholder="Pages" required>
-                    <div class="read">Have you read it?<input type="checkbox" id="check"></div>
-                    <form method="dialog">
+                    <input type="number" placeholder="Pages" id="pagesInput" required>
+                    <div class="read">Have you read it?<input type="checkbox" id="check" placeholder="read" checked></div>
+                    
                       <button type="submit" id="submit">Submit</button>
                     </form>
                 </div>
@@ -31,7 +33,12 @@
         
         
         <div class="footer">  
-          hello world
+            <p class="kevan">
+                <a href="https://github.com/kevankas">
+                    Designed by Kevan 
+                    
+                </a>
+            </p>
       
         </div>
     </div>
@@ -39,35 +46,61 @@
     <script>
         let myLibrary = [];
 
-        function Book() {
-        // the constructor...
-        // book.title
-        // book.author
-        // book.pages
-        // book.read
-
+        function Book(title, author, pages, read) {
+            this.title = title;
+            this.author = author;
+            this.pages = pages;
+            this.read = read;
         }
 
-        function addBookToLibrary() {
-        // do stuff here
+        function addBookToLibrary(book) {
+            myLibrary.push(book);
+            console.log(myLibrary);
         }
-
 
         const showInput = document.getElementById("newBook");
-        // const showDialog = document.getElementById("dialog");
-        showInput.addEventListener("click", () => dialog.showModal());
-        // const myDialog = document.getElementById('dialog');
-        // myDialog.addEventListener('click', () => myDialog.close());
-  
-        function onMouseDown(event) {
-        if (event.target === dialog) {
-            dialog.close();
-        }
-        }
-
         const dialog = document.querySelector("dialog");
-        dialog.addEventListener("mousedown", onMouseDown);
 
+        showInput.addEventListener("click", () => dialog.showModal());
+        dialog.addEventListener("mousedown", (event) => {
+            if (event.target === dialog) {
+                dialog.close();
+            }
+        });
+
+        const submitButton = document.getElementById("submit");
+        const pagesInput = document.getElementById("pagesInput");
+        const form = document.getElementById("myForm");
+
+        submitButton.addEventListener("click", function (event) {
+            event.preventDefault();
+
+                const formInputs = form.querySelectorAll("input");
+
+                let isValid = true; 
+
+                
+                if (parseInt(pagesInput.value) < 0) {
+                    isValid = false;
+                    pagesInput.classList.add("invalid"); 
+                } else {
+                    pagesInput.classList.remove("invalid"); 
+                }
+
+                if (isValid) {
+                    const title = formInputs[0].value;
+                    const author = formInputs[1].value;
+                    const pages = formInputs[2].value;
+                    const read = formInputs[3].checked;
+
+                    const newBook = new Book(title, author, pages, read);
+                    addBookToLibrary(newBook);
+
+                    form.reset();
+
+                    dialog.close();
+                }
+            });
 
    
     </script>

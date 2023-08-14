@@ -12,10 +12,7 @@
 {
     text-align: center;
 }
-#dialog
-{
-    border: 1px solid red;
-}
+
 .dialog
 {
     border: 0;
@@ -37,6 +34,10 @@ dialog
     
     border: 2px solid black;
     border-radius: 10px;
+}
+.invalid
+{
+    background-color: red;
 }
 dialog::backdrop
 {
