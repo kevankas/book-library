@@ -12,15 +12,13 @@
         <div class="body">
           <button id="newBook">New Book</button>
         
-        </div>
-        <div class="bodytwo">
-        <dialog id="dialog">
+          <dialog id="dialog">
             <form method="dialog" id="myForm">
                 <div class="dialog">
                     
                     <h1 class="h1">Add new book</h1>
-                    <input placeholder="Title" required>
-                    <input placeholder="Author" required>
+                    <input placeholder="Title" required id="titleInput">
+                    <input placeholder="Author" required id="authorInput">
                     <input type="number" placeholder="Pages" id="pagesInput" required>
                     <div class="read">Have you read it?<input type="checkbox" id="check" placeholder="read" checked></div>
                     
@@ -28,6 +26,13 @@
                     </form>
                 </div>
               </dialog>
+        </div>
+        <div class="bodytwo">
+
+
+
+
+
         
         </div>
         
@@ -56,6 +61,7 @@
         function addBookToLibrary(book) {
             myLibrary.push(book);
             console.log(myLibrary);
+            displayArray(book);
         }
 
         const showInput = document.getElementById("newBook");
@@ -87,6 +93,20 @@
                     pagesInput.classList.remove("invalid"); 
                 }
 
+                if (titleInput.value === "") {
+                    isValid = false;
+                    titleInput.classList.add("invalid"); 
+                } else {
+                    titleInput.classList.remove("invalid"); 
+                }
+
+                if (authorInput.value === "") {
+                    isValid = false;
+                    authorInput.classList.add("invalid"); 
+                } else {
+                    authorInput.classList.remove("invalid"); 
+                }
+
                 if (isValid) {
                     const title = formInputs[0].value;
                     const author = formInputs[1].value;
@@ -101,7 +121,27 @@
                     dialog.close();
                 }
             });
+            function displayArray(book) {
+            const bodyTwo = document.querySelector(".bodytwo");
 
+            const bookDiv = document.createElement("div");
+            bookDiv.className = "book-info";
+            bookDiv.innerHTML = `
+                <p>Title: ${book.title}</p>
+                <p>Author: ${book.author}</p>
+                <p>Pages: ${book.pages}</p>
+                <button class="readcheck">Read: ${book.read ? "Yes" : "No"}</button>
+            `;
+            // if (book.read === true)
+            // {
+            //     console.log("pizza");
+            // }
+
+            bodyTwo.appendChild(bookDiv);
+        }
+
+      
+     
    
     </script>
 </body>
